@@ -1,80 +1,135 @@
 # 🎯 Magic: The Gathering BI Analytics Project
 
-## 📌 Overview
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
+![Power BI](https://img.shields.io/badge/PowerBI-Visualization-yellow)
+![Status](https://img.shields.io/badge/Status-Active-success)
+
+## 📊 Project Overview
+
 This project is an end-to-end Business Intelligence solution built to analyze Magic: The Gathering Commander games.
 
-It simulates a real-world analytics workflow, including data extraction, transformation, storage, and visualization.
+It simulates a real-world analytics workflow, covering the full pipeline:
+- Data extraction from external sources
+- Data transformation and validation
+- Data modeling in a relational database
+- Interactive dashboard creation
 
----
+The goal is to demonstrate strong fundamentals in data engineering, data modeling, and business intelligence.
 
 ## 🧱 Architecture
 
 Google Sheets → Python ETL → PostgreSQL → Power BI
 
----
-
 ## ⚙️ Tech Stack
 
-- Python (ETL pipeline)
-- PostgreSQL (Data warehouse)
-- Power BI (Visualization)
-- Google Sheets (Data source)
-
----
+- **Python** — Data extraction, transformation, and loading (ETL)
+- **PostgreSQL** — Data storage and modeling (star schema)
+- **Power BI** — Data visualization and dashboarding
+- **Google Sheets** — Data source
 
 ## 📊 Data Model
 
-The project follows a **star schema** design:
+The project follows a **star schema design**.
 
 ### Fact Table
-- FACT_GAMES → 1 row per player per game
+- `FACT_GAMES` → 1 row per player per game
 
-### Dimensions
-- DIM_PLAYER
-- DIM_COMMANDER
-- DIM_COLOR
-- DIM_SEASON
-- DIM_SCORE_RULE
-
----
+### Dimension Tables
+- `DIM_PLAYER`
+- `DIM_COMMANDER`
+- `DIM_COLOR`
+- `DIM_SEASON`
+- `DIM_SCORE_RULE`
 
 ## 🔄 ETL Process
 
 ### Extract
-- Data extracted from Google Sheets
+- Data is extracted from Google Sheets using Python
 
 ### Transform
 - Data cleaning and validation
-- Type conversions (date, boolean, interval)
+- Type conversion (dates, booleans, durations)
 - Business rules applied
+- Error handling and logging
 
 ### Load
-- Full refresh strategy (TRUNCATE + INSERT)
+- Full refresh strategy:
+  - `TRUNCATE` + `INSERT`
 - Data loaded into PostgreSQL
-
----
 
 ## 📈 Key Features
 
-- Dynamic performance metrics (wins, win rate, score)
-- Data validation and error handling
-- Logging for ETL monitoring
-- Clean and modular architecture
+- Dynamic performance metrics:
+  - Matches
+  - Victories (3-player and 4-player)
+  - Win rate
+  - Score calculation
+  - Combos tracking
 
----
+- Data validation:
+  - Invalid rows detection and logging
+  - Format validation (duration, color, etc.)
+
+- Modular architecture:
+  - `extract`, `transform`, `load` separation
+  - Reusable components
 
 ## 📊 Dashboard
 
-*(Add screenshots here later)*
+*Screenshots will be added here.*
 
----
+Example structure:
+
+- Main dashboard
+- Player performance analysis
+- Commander analysis
+- Score breakdown
+
+## 🧪 Additional Analytics (Python Layer)
+
+The project also includes a Python-based analytics layer to:
+
+- Reproduce BI metrics outside Power BI
+- Validate calculations between layers
+- Perform advanced analysis not easily handled in dashboards
+
+Example use case:
+- Player vs opponent performance analysis
 
 ## ▶️ How to Run
 
-1. Clone the repository
-2. Create a `.env` file based on `.env.example`
-3. Install dependencies
-4. Run the pipeline:
+1. Clone the repository:
 
-```bash
-python src/main.py
+    git clone https://github.com/nutsT90/magic-bi-analytics.git
+
+2. Navigate to the project folder:
+
+    cd magic-bi-analytics
+
+3. Create a `.env` file based on `.env.example`
+
+4. Install dependencies:
+
+    pip install -r requirements.txt
+
+5. Run the pipeline:
+
+    python src/main.py
+
+## 🚀 Future Improvements
+
+- SQL validation layer for metric verification
+- Dashboard enhancements and storytelling improvements
+- PySpark implementation for scalability
+- Cloud pipeline simulation (scheduled execution)
+- Data quality monitoring
+- Python-based dashboard and metrics replication
+
+## 📌 Project Status
+
+This project is actively maintained and continuously improved to simulate real-world data workflows.
+
+## 👨‍💻 Author
+
+Thiago Mattos Santos
