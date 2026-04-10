@@ -5,7 +5,7 @@
 ![Power BI](https://img.shields.io/badge/PowerBI-Visualization-yellow)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
-## 📊 Project Overview
+## Project Overview
 
 This project is an end-to-end Business Intelligence solution built to analyze Magic: The Gathering Commander games.
 
@@ -58,7 +58,7 @@ The project follows a **star schema design**.
   - `TRUNCATE` + `INSERT`
 - Data loaded into PostgreSQL
 
-## 📈 Key Features
+## Key Features
 
 - Dynamic performance metrics:
   - Matches
