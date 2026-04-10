@@ -90,10 +90,10 @@ Example:
 ## Dashboard
 
 ### Season Overview
-![Season Overview](screenshots/season_overview_single.png)
+![Season Overview](assets/screenshots/season_overview_single.png)
 
 ### All Seasons Overview
-![All Seasons Overview](screenshots/season_overview_all.png)
+![All Seasons Overview](assets/screenshots/season_overview_all.png)
 
 *More screenshots will be added here.*
 
