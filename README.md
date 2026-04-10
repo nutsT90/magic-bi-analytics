@@ -75,9 +75,27 @@ The project follows a **star schema design**.
   - `extract`, `transform`, `load` separation
   - Reusable components
 
+## SQL Layer
+
+In addition to the Python ETL pipeline, this project includes SQL scripts responsible for analytical logic inside PostgreSQL.
+
+This layer is used to:
+- reproduce ranking rules directly in the database
+- apply business logic for leaderboard eligibility
+- generate final analytical tables consumed by Power BI
+
+Example:
+- `sql/ranking_points.sql` → creates the `ranking_points` table with bonus score logic by player and season
+
 ## Dashboard
 
-*Screenshots will be added here.*
+### Season Overview
+![Season Overview](screenshots/season_overview_single.png)
+
+### All Seasons Overview
+![All Seasons Overview](screenshots/season_overview_all.png)
+
+*More screenshots will be added here.*
 
 Example structure:
 
