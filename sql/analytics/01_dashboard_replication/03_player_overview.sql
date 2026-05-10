@@ -23,6 +23,58 @@ SELECT
 			
 FROM bi_magic.fact_games;
 
+-- =====================================================
+-- TOP 3 PLAYER CHARTS
+-- =====================================================
+
+WITH top_3_matches AS(
+
+	SELECT		player_name,
+				'matches' 											AS metric,
+				COUNT(DISTINCT id_game)								AS metric_value,
+				RANK() OVER(ORDER BY COUNT(DISTINCT id_game) DESC)	AS ranking
+	
+	FROM		bi_magic.fact_games
+	GROUP BY	player_name
+),
+
+top_3_victories AS(
+
+	SELECT		player_name,
+				'victories'								AS metric,
+				COUNT(*) FILTER(WHERE winner IS TRUE) 	AS metric_value,
+				RANK() OVER(ORDER BY COUNT(*) FILTER(WHERE winner IS TRUE) DESC) AS ranking
+
+	FROM		bi_magic.fact_games
+	GROUP BY	player_name
+),
+
+top_3_win_rate AS(
+
+	SELECT		a.player_name,
+				'win_rate'								AS metric,
+				ROUND(
+				b.metric_value::numeric /
+				NULLIF(a.metric_value, 0), 2)			AS metric_value,
+				RANK() OVER(ORDER BY 
+								(b.metric_value::numeric / 
+								NULLIF(a.metric_value, 0))
+							DESC) 						AS ranking
+
+	FROM		top_3_matches a
+	LEFT JOIN	top_3_victories b ON a.player_name = b.player_name
+	WHERE		a.metric_value >= 5
+	GROUP BY	a.player_name,
+				a.metric_value,
+				b.metric_value
+)
+
+SELECT 	player_name, metric, metric_value, ranking	FROM top_3_matches		WHERE ranking <= 3
+UNION ALL
+SELECT 	player_name, metric, metric_value, ranking	FROM top_3_victories	WHERE ranking <= 3
+UNION ALL
+SELECT 	player_name, metric, metric_value, ranking	FROM top_3_win_rate		WHERE ranking <= 3
+ORDER BY metric, ranking;
 
 
 -- =====================================================
