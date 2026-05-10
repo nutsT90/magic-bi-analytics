@@ -107,7 +107,8 @@ WITH score AS(
 /*
 SELECT 		*,
 			M + V3 + V4 + C		AS base_score,
-			M + V3 + V4 + C + B AS total_score
+			M + V3 + V4 + C + B AS total_score,
+			RANK() OVER(ORDER BY (M + V3 + V4 + C + B) DESC)
 FROM 		score
 ORDER BY	player_name
 */
