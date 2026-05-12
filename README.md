@@ -94,9 +94,10 @@ Examples:
 - `sql/analytics/01_dashboard_replication/02_season_overview.sql` → reproduces Season Overview metrics from Power BI
 - `sql/analytics/01_dashboard_replication/03_player_overview.sql` → reproduces Player Overview metrics and deep-dive analysis
 - `sql/analytics/01_dashboard_replication/04_commander_overview.sql` → reproduces Commander Overview metrics and deep-dive analysis
-- `sql/analytics/02_advanced_analysis/05_ranking_points.sql` → creates the `ranking_points` table with bonus score logic by player and season
-- `sql/analytics/02_advanced_analysis/06_streak_players.sql` → calculates player win/loss streak logic
-- `sql/analytics/02_advanced_analysis/07_streak_commanders.sql` → calculates commander win/loss streak logic
+- `sql/analytics/01_dashboard_replication/05_hall_of_fame_and_insights.sql` → reproduces Navigation Page Hall of Fame cards and supports insight statements with SQL evidence
+- `sql/analytics/02_advanced_analysis/06_ranking_points.sql` → creates the `ranking_points` table with bonus score logic by player and season
+- `sql/analytics/02_advanced_analysis/07_streak_players.sql` → calculates player win/loss streak logic
+- `sql/analytics/02_advanced_analysis/08_streak_commanders.sql` → calculates commander win/loss streak logic
 
 ## Dashboard
 
