@@ -77,15 +77,26 @@ The project follows a **star schema design**.
 
 ## SQL Layer
 
-In addition to the Python ETL pipeline, this project includes SQL scripts responsible for analytical logic inside PostgreSQL.
+In addition to the Python ETL pipeline, this project includes a SQL analytical layer inside PostgreSQL.
 
 This layer is used to:
-- reproduce ranking rules directly in the database
-- apply business logic for leaderboard eligibility
-- generate final analytical tables consumed by Power BI
+- validate analytical assumptions before reproducing dashboard logic
+- handle player-game grain and match-level calculations
+- reproduce Power BI dashboard metrics directly in SQL
+- apply business rules for score, rankings, eligibility, streaks, and deep-dive analysis
+- support analytical validation between PostgreSQL and Power BI
 
-Example:
-- `sql/ranking_points.sql` → creates the `ranking_points` table with bonus score logic by player and season
+The SQL replication layer also helped identify and correct inconsistencies in the Power BI dashboard logic, including context/filtering issues in calculated metrics, improving the reliability of the final analytical model.
+
+Examples:
+- `sql/analytics/00_foundation_layer/00_foundation_checks.sql` → validates grain, winner consistency, duration consistency, and position rules
+- `sql/analytics/00_foundation_layer/01_game_level_base.sql` → creates a game-level view with one row per match
+- `sql/analytics/01_dashboard_replication/02_season_overview.sql` → reproduces Season Overview metrics from Power BI
+- `sql/analytics/01_dashboard_replication/03_player_overview.sql` → reproduces Player Overview metrics and deep-dive analysis
+- `sql/analytics/01_dashboard_replication/04_commander_overview.sql` → reproduces Commander Overview metrics and deep-dive analysis
+- `sql/analytics/02_advanced_analysis/05_ranking_points.sql` → creates the `ranking_points` table with bonus score logic by player and season
+- `sql/analytics/02_advanced_analysis/06_streak_players.sql` → calculates player win/loss streak logic
+- `sql/analytics/02_advanced_analysis/07_streak_commanders.sql` → calculates commander win/loss streak logic
 
 ## Dashboard
 
